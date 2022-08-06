@@ -2,14 +2,17 @@ import java.util.Random;
 
 
 public class MagicBox<T> {
-
-    T[] items;
+    private T[] items;
     private int count;
+    Random random = new Random();
 
-    public void box(int number) {
 
+    public void setBoxCapacity(int number) {
         items = (T[]) new Object[number];
+
+
     }
+
 
     public boolean add(T item) {
 
@@ -23,20 +26,20 @@ public class MagicBox<T> {
         return false;
     }
 
-
     public T pick() {
 
         try {
+
             for (int i = 0; i < items.length; i++) {
                 if (items[i] == null) {
                     count++;
                 }
             }
+
         } finally {
             if (count > 0) {
-                throw new RuntimeException("Коробка не заполнена! Не заполнено" + " " + count +" "+"ячеек!");
+                throw new RuntimeException("Коробка не заполнена! Не заполнено" + " " + count + " " + "ячеек!");
             } else {
-                Random random = new Random();
                 int randomInt = random.nextInt(items.length);
                 return items[randomInt];
             }
